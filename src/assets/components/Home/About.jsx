@@ -3,9 +3,11 @@ import Footer from './Footer';
 import CustomNavbar from './CustomNavbar';
 
 const AboutUs = () => {
+
     const myStyles = {
         marginTop: "40px" ,marginLeft:'3%' ,marginBottom:"40px"
       };
+      
   return (
     <>
     <CustomNavbar/>

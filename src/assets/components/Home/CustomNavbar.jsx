@@ -1,10 +1,9 @@
-// Navbar.js
+
 
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import '../css/CustomNavbar.css';
+import '../../css/CustomNavbar.css'
 
 const CustomNavbar = () => {
     const navbarStyle= {

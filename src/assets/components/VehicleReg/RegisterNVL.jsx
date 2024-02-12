@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
+import Footer from '../Home/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegiNavBar from './RegistervlNav';
 
@@ -13,6 +13,10 @@ const RegisterNVL = () => {
         vehicleModel: '',
         purchaseDate: '',
     })
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
 
     const myStyles = {
         marginTop: "40px", marginLeft: '3%', marginBottom: "40px"
@@ -39,7 +43,7 @@ const RegisterNVL = () => {
                                     name="registrationNumber"
                                     id="registrationNumber"
                                     value={formData.registrationNumber}
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     required
                                 />
 
@@ -52,7 +56,7 @@ const RegisterNVL = () => {
                                     name="vehicleType"
                                     id="vehicleType"
                                     value={formData.vehicleType}
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     required
                                 />
 
@@ -65,7 +69,7 @@ const RegisterNVL = () => {
                                     name="vehicleCompany"
                                     id="vehicleCompany"
                                     value={formData.vehicleCompany}
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     required
                                 />
                             </div>
@@ -77,7 +81,7 @@ const RegisterNVL = () => {
                                     name="vehicleModel"
                                     id="vehicleModel"
                                     value={formData.vehicleModel}
-                                    // onChange={handleChange}
+                                    onChange={handleChange}
                                     required
                                 />
 
@@ -90,26 +94,28 @@ const RegisterNVL = () => {
                                     name="purchaseDate"
                                     id="purchaseDate"
                                     value={formData.purchaseDate}
-                                    // onChange={handleChange}  
+                                    onChange={handleChange}
                                     required
                                 />
 
                             </div>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                             <Link to="/xyzz" className='btn btn-primary btn-lg'>Register</Link>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <Link to="/Dashboard" className='btn btn-primary btn-lg'>Back</Link>
                         </div>
                     </div>
 
                 </div>
-
+                <div className='col-sm-5'>
+                    <img src='/img/caar.jpg' alt='Registration Image' style={{ width: "90%", height: "88%", marginTop: "40px", marginLeft:"40px" }}></img>
+                </div>
             </div>
             <Footer />
         </>

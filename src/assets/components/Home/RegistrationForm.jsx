@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import CustomNavbar from './CustomNavbar';
 import Footer from './Footer';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
-import { addUserDetails } from './axiosMA';
+import { addUserDetails } from '../axiosMA';
 import { toast } from 'react-toastify'; 
 
 
@@ -79,7 +79,7 @@ const RegisterForm = () => {
               <input
                 type="text"
                 className="form-control"
-                id="s_d_w"
+                // id="s_d_w"
                 name="s_d_w"
                 value={formData.s_d_w}
                 onChange={handleChange}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from './Footer';
+import Footer from '../Home/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegiNavBar from './RegistervlNav';
-import { addVehicledetails } from './axiosMA';
+import { addVehicledetails } from '../axiosMA';
 import { toast } from 'react-toastify';
 
 
@@ -17,6 +17,7 @@ const RegisterVL = () => {
     })
 
     const navigate = useNavigate()
+   
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -50,6 +51,7 @@ const RegisterVL = () => {
                             <h2 style={{ textAlign: 'center' }}>New Vehicle Registration</h2>
 
                             <form onSubmit={handleSubmit}>
+                                
                                 <div className='mb-3'>
                                     <label htmlFor="vehicleType" className='form-label'>Vehicle Type</label>
                                     <input
@@ -103,7 +105,7 @@ const RegisterVL = () => {
                                 </div>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 
                                 <Link to="/dashboard" className='btn btn-primary btn-lg' onClick={handleSubmit}>Register</Link>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -114,7 +116,9 @@ const RegisterVL = () => {
                     </div>
 
                 </div>
-
+                <div className='col-sm-5'>
+                    <img src='/img/vehicalR.jpg' alt='Registration Image' style={{ width: "100%", height: "90%", marginTop:"20px" }}></img>
+                </div>
             </div>
             <Footer />
         </>

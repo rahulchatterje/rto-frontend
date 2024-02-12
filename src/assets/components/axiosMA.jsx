@@ -17,14 +17,12 @@ export async function addUserDetails(userDetails) {
 export async function addVehicledetails(vehicleDetails) {
 
   try {
-    const response = await axios.post(`${SERVER_URL}/vehicleRegistration/vehReg/{userId}`, vehicleDetails);
+    const response = await axios.post(`${SERVER_URL}/vehicleRegistration/vehReg/`, vehicleDetails);
     console.log('Vechile Details Added Successfully : ', response.data);
     return response.data;
   } catch (error) {
     console.error('Error adding vehicle details:', error);
     throw error;
   }
-
-
 
 };

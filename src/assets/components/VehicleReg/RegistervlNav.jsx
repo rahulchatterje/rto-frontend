@@ -1,11 +1,11 @@
 // Navbar.js
 
 import React from 'react';
-// import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import '../css/CustomNavbar.css'
-const UserNavBar = () => {
+
+
+const RegiNavBar = () => {
     const navbarStyle= {
         marginRight:'6%',
       };
@@ -26,9 +26,7 @@ const UserNavBar = () => {
     
     <div  id="navbarNav" style={navbarStyle}>
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item active">
-        <Link to="/dashboard/myResult">My Result</Link>
-        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
         <li className="nav-item">
         <Link to="/about">User Manual</Link>
         </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -47,4 +45,4 @@ const UserNavBar = () => {
   );
 };
 
-export default UserNavBar;
+export default RegiNavBar;

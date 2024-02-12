@@ -11,20 +11,25 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import Home from './assets/components/Home';
-// import Login from './assets/components/Login';
 
+import Home from './assets/components/Home/Home';
+import RegisterForm from './assets/components/Home/RegistrationForm';
+import AboutUs from './assets/components/Home/About';
+import Services from './assets/components/Home/Services';
+import ContactUs from './assets/components/Home/ContactUs';
 
-import UserDashboard from './assets/components/UserDashboard';
-import RegisterForm from './assets/components/RegistrationForm';
-import RegisterVL from './assets/components/RegisterVL';
-import AboutUs from './assets/components/About';
-import Services from './assets/components/Services';
-import ContactUs from './assets/components/ContactUs';
-import RegisterNVL from './assets/components/RegisterNVL';
-import PersonalInfo from './assets/components/PersonalDetails';
-import MyResult from './assets/components/MyResult';
-import License from './assets/components/licenceDash';
+import UserDashboard from './assets/components/DashBoard/UserDashboard';
+import MyResult from './assets/components/DashBoard/MyResult';
+
+import RegisterNVL from './assets/components/VehicleReg/RegisterNVL';
+import RegisterVL from './assets/components/VehicleReg/RegisterVL';
+
+import PersonalInfo from './assets/components/PersonalD/PersonalDetails';
+import CorresP from './assets/components/PersonalD/CorresAdd';
+import PermantAd from './assets/components/PersonalD/PermAdd';
+
+import License from './assets/components/License/licenceDash';
+
 
 function App() {
   // const [color, setColor] = useState('olive')
@@ -34,23 +39,26 @@ function App() {
   // }
   return (
     <>
-  <BrowserRouter>
-    <Routes>
-    
-      <Route path="/" exact element={<Home/>} />
-      <Route path="/dashboard" exact element={<UserDashboard/>} />
-      <Route path="/register"  element={<RegisterForm/>} />
-      <Route path="/dashboard/registerVL" element={<RegisterVL/>}/>
-      <Route path="/dashboard/registerNVL" element={<RegisterNVL/>}/>
-      <Route path="/about"  element={<AboutUs/>} />
-      <Route path="/service" exact element={<Services/>} />
-      <Route path="/contact" exact element={<ContactUs/>} />
-      <Route path="/personalInfo" element={<PersonalInfo/>} />
-      <Route path="/dashboard/myResult" element={<MyResult/>}/>
-      <Route path="/license" element={<License/>}/>
-      </Routes>
-  </BrowserRouter>
-  
+      <BrowserRouter>
+        <Routes>
+
+          <Route path="/" exact element={<Home />} />
+          <Route path="/dashboard" exact element={<UserDashboard />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/service" exact element={<Services />} />
+          <Route path="/contact" exact element={<ContactUs />} />
+
+          <Route path="/dashboard/registerVL" element={<RegisterVL />} />
+          <Route path="/dashboard/registerNVL" element={<RegisterNVL />} />
+          <Route path="/dashboard/personalInfo" element={<PersonalInfo />} />
+          <Route path="/dashboard/correspondenceAddress" element={<CorresP />} />
+          <Route path='/dashboard/permanentAddress' element={<PermantAd />} />
+          <Route path="/dashboard/myResult" element={<MyResult />} />
+          <Route path="/dashboard/license" element={<License />} />
+        </Routes>
+      </BrowserRouter>
+
     </>
   )
 }

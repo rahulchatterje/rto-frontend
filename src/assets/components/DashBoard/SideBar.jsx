@@ -1,29 +1,33 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import '../css/list.css'
-import { Card } from 'react-bootstrap';
+import '../../css/list.css'
+
 const SideBar = ({ username }) => {
   return (
     <>
-
       <div className="row mt-5 " >
-
         <div className="">
           <div className="card">
             <div className='card-body'>
-              <h5 className='card-title'>Personal Info</h5>
+              <h5 className='card-title'>Profile</h5>
               <ul className="list-group">
-              <li className='list-group-item'>
-                <Link to="/personalInfo">Update Info </Link>
-              </li>
+                <li className='list-group-item'>
+                  <Link to="/dashboard/personalInfo">Personal Details </Link>
+                </li>
+                <li className='list-group-item'>
+                  <Link to="/dashboard/correspondenceAddress">Add Corresponding Address </Link>
+                </li>
+                <li className='list-group-item'>
+                  <Link to="/dashboard/permanentAddress">Add Permanent Address </Link>
+                </li>
               </ul>
             </div>
             <div className="card-body">
               <h5 className="card-title">Licence</h5>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <Link to="/license">Apply For New Licence</Link>
+                  <Link to="/dashboard/license">Apply For New Licence</Link>
                 </li>
                 {/* <li className="list-group-item">
                     <Link to="/dashboard/profile">Apply For Duplicate Licence</Link>
