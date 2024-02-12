@@ -1,0 +1,7 @@
+ul li a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the default text color */
+  }
+  .row{
+    justify-content: center;
+  }

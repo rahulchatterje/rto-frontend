@@ -1,0 +1,6 @@
+/* YourComponent.css */
+nav ul li a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the default text color */
+  }
+  
