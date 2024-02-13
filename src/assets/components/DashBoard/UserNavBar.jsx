@@ -1,4 +1,4 @@
-// Navbar.js
+
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,6 +42,12 @@ const UserNavBar = () => {
             </li>
           </ul>
         </div>
+        <img
+          src="/img/g20-logo.png" // Replace with the path to your logo
+          alt="Logo"
+          height="40"
+          className="d-inline-block align-top"
+        />
       </div>
     </nav>
   );
