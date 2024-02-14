@@ -110,7 +110,7 @@ const RegisterVL = () => {
                                 <Link to="/dashboard" className='btn btn-primary btn-lg' onClick={handleSubmit}>Register</Link>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <Link to="/Dashboard" className='btn btn-primary btn-lg'>Back</Link>
+                                <Link to="/dashboard" className='btn btn-primary btn-lg'>Back</Link>
                             </form>
                         </div>
                     </div>

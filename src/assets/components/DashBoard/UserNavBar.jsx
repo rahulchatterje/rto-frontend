@@ -11,7 +11,7 @@ const UserNavBar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm sticky-top navbar-light bg-white shadow " >
+    <nav className="navbar navbar-expand-sm relative navbar-light bg-white shadow " >
 
       <div className="container">
         <Link to="/" className="navbar-brand">

@@ -29,7 +29,7 @@ import CorresP from './assets/components/PersonalD/CorresAdd';
 import PermantAd from './assets/components/PersonalD/PermAdd';
 
 import License from './assets/components/License/licenceDash';
-
+import Learning_license from './assets/components/License/LearningLicense';
 
 function App() {
   // const [color, setColor] = useState('olive')
@@ -55,7 +55,9 @@ function App() {
           <Route path="/dashboard/correspondenceAddress" element={<CorresP />} />
           <Route path='/dashboard/permanentAddress' element={<PermantAd />} />
           <Route path="/dashboard/myResult" element={<MyResult />} />
+
           <Route path="/dashboard/license" element={<License />} />
+          <Route path='/dashboard/license/learning' element={<Learning_license/>}/>
         </Routes>
       </BrowserRouter>
 

@@ -24,7 +24,7 @@ const license = () => {
                         <div className="card-body">
                             <h5 className="card-title" style={{textDecoration:'underline'}}>Apply For Learning License</h5>
                             <p className="card-text">Here for the first time? then you have to register your self before going furthur. Please! click the link below to start with.</p>
-                            <Link to="" className="btn btn-primary">Learning License</Link>
+                            <Link to="/dashboard/license/learning" className="btn btn-primary">Learning License</Link>
                         </div>
                     </div>
                 </div>
