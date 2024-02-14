@@ -26,7 +26,7 @@ const Learning_license = () => {
     const myStyles = {
         marginTop: '40px', marginBottom: '40px', marginLeft: '40px', marginRight: '40px'
     }
-    
+
 
     return (
         <>
@@ -114,8 +114,8 @@ const Learning_license = () => {
                                 <Link to="/dashboard/license" className="btn btn-primary mt-3" >
                                     Register
                                 </Link>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <Link to="/dashboard/license/learning" className="btn btn-primary mt-3">
-                                    reset
+                                <Link to="/dashboard/license" className="btn btn-primary mt-3">
+                                    Back
                                 </Link>
                             </form>
                         </div>
@@ -123,7 +123,7 @@ const Learning_license = () => {
                     </div>
 
                 </div>
-              
+
 
             </div>
             <Footer />
