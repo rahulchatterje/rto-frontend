@@ -4,7 +4,7 @@ import CustomNavbar from './CustomNavbar';
 import Footer from './Footer';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
 import { addUserDetails } from '../axiosMA';
-import { Toast, toast } from './toast';
+import {Toast, toast } from '../toast';
 
 const RegisterForm = () => {
 
@@ -32,8 +32,9 @@ const RegisterForm = () => {
     try {
       const response = await addUserDetails(formData);
       // Call the addUserDetails function
+      
       toast.success("Congradulations! You are registered successfully..");
-      setTimeout(() => { navigate('/') }, 2000);
+      setTimeout(() => { navigate('/') }, 3000);
 
 
       // Handle the response or perform any other actions upon successful submission

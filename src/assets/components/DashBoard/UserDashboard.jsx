@@ -5,11 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SideBar from './SideBar';
 import MainUserInfo from './MainUserInfo';
 import UserNavBar from './UserNavBar';
+import { useLocation } from 'react-router-dom';
 
-const UserDashboard = ({ username }) => {
-  const myStyle = {
+const UserDashboard = () => {
 
-  };
+  const location = useLocation();
+  const username = location?.state?.name;
+
   return (
     <>
       <UserNavBar />
@@ -20,7 +22,7 @@ const UserDashboard = ({ username }) => {
           <SideBar />
         </div>
         <div className="col-sm-8" style={{ marginRight: '5%' }}>
-          <MainUserInfo />
+          <MainUserInfo username={username} />
         </div>
       </div>
 

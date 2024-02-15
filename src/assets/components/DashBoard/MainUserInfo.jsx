@@ -1,5 +1,5 @@
 import React from 'react'
-const MainUserInfo = ({ username="Akanksha" }) => {
+const MainUserInfo = ({ username}) => {
 
   return (
     <>
