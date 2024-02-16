@@ -27,14 +27,14 @@ const SideBar = ({ username }) => {
               <h5 className="card-title">Licence</h5>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <Link to="/dashboard/license">Apply For New Licence</Link>
+                  <Link to="/dashboard/license">Apply For  Licence</Link>
                 </li>
                 {/* <li className="list-group-item">
                     <Link to="/dashboard/profile">Apply For Duplicate Licence</Link>
                   </li> */}
-                <li className="list-group-item">
-                  <Link to="/">Apply For Renew Licence</Link>
-                </li>
+                  {/* <li className="list-group-item">
+                    <Link to="/">Apply For Renew Licence</Link>
+                  </li> */}
 
                 {/* Add more navigation links as needed */}
               </ul>

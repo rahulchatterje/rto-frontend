@@ -28,7 +28,39 @@ export async function addUserDetails(userDetails) {
 export async function addVehicledetails(vehicleDetails) {
 
   try {
-    const response = await axios.post(`${SERVER_URL}/vehicleRegistration/vehReg/`, vehicleDetails);
+    // const userResponse = await axios.get(`${SERVER_URL}/home/personalDetails/${userid}`);
+    // const userDetails = userResponse.data; // Assuming user details are returned in the response body
+
+    // // Combine user details with vehicle details
+    // const combinedDetails = {
+    //   ...userDetails,
+    //   ...vehicleDetails
+    // };
+
+    const response = await axios.post(`${SERVER_URL}/vehicalRegistration/vehReg/${sessionStorage.getItem("id")}`, vehicleDetails);
+    console.log('Vehicle Details Added Successfully : ', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+
+};
+
+
+export async function getVehicledetails(vehicleDetails) {
+
+  try {
+    // const userResponse = await axios.get(`${SERVER_URL}/home/personalDetails/${userid}`);
+    // const userDetails = userResponse.data; // Assuming user details are returned in the response body
+
+    // // Combine user details with vehicle details
+    // const combinedDetails = {
+    //   ...userDetails,
+    //   ...vehicleDetails
+    // };
+
+    const response = await axios.post(`${SERVER_URL}/vehicalRegistration/vehReg/${sessionStorage.getItem("id")}`, vehicleDetails);
     console.log('Vehicle Details Added Successfully : ', response.data);
     return response.data;
   } catch (error) {

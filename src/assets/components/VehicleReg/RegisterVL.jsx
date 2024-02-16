@@ -5,14 +5,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RegiNavBar from './RegistervlNav';
 import { addVehicledetails } from '../axiosMA';
 import { toast } from 'react-toastify';
+import Modal from 'react-bootstrap/Modal';
+
+import Button from 'react-bootstrap/Button';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const RegisterVL = () => {
 
+    const [modalShow, setModalShow] = React.useState(false);
+    const [data,setData]=useState("");
+
     const [formData, setFormData] = useState({
         vehicleType: '',
-        vehicleCompany: '',
-        vehicleModel: '',
+        vehicalCompany: '',
+        vehicalModel: '',
         purchaseDate: '',
     })
 
@@ -27,7 +49,11 @@ const RegisterVL = () => {
         console.log(formData);
         try {
             const response = await addVehicledetails(formData);
-            navigate('/dashboard')
+            setData(response?.registrationNo)
+            setModalShow(true)
+            console.log(response);
+            // window.alert(JSON.stringify(response.registrationNo), "Please! note ");
+            
             toast.success("Congradulations! Vehicle registered successfully..");
         }
         catch (error) {
@@ -66,25 +92,25 @@ const RegisterVL = () => {
 
                                 </div>
                                 <div className='mb-3'>
-                                    <label htmlFor="vehicleCompany" className='form-label'> Vehicle Company</label>
+                                    <label htmlFor="vehicalCompany" className='form-label'> Vehicle Company</label>
                                     <input
                                         type="text"
                                         className='form-control'
-                                        name="vehicleCompany"
-                                        id="vehicleCompany"
-                                        value={formData.vehicleCompany}
+                                        name="vehicalCompany"
+                                        id="vehicalCompany"
+                                        value={formData.vehicalCompany}
                                         onChange={handleChange}
                                         required
                                     />
                                 </div>
                                 <div className='mb-3'>
-                                    <label htmlFor="vehicleModel" className='form-label'>Vehicle Model</label>
+                                    <label htmlFor="vehicalModel" className='form-label'>Vehicle Model</label>
                                     <input
                                         type="text"
                                         className='form-control'
-                                        name="vehicleModel"
-                                        id="vehicleModel"
-                                        value={formData.vehicleModel}
+                                        name="vehicalModel"
+                                        id="vehicalModel"
+                                        value={formData.vehicalModel}
                                         onChange={handleChange}
                                         required
                                     />
@@ -121,7 +147,45 @@ const RegisterVL = () => {
                 </div>
             </div>
             <Footer />
+
+
+            <MyVerticallyCenteredModal
+        data={data}
+        show={modalShow}
+        onHide={() => {
+            setModalShow(false);
+            navigate("/dashboard")
+        }}
+      />
         </>
     )
 }
 export default RegisterVL;
+
+
+
+function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Registration Number
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <h5> Please note this number for furthur use. </h5>
+          <h3>
+            {props.data} 
+          </h3>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Understood</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
