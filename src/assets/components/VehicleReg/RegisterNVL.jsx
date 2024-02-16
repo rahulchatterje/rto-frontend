@@ -18,6 +18,10 @@ const RegisterNVL = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
+    const handleId= (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+
     const myStyles = {
         marginTop: "40px", marginLeft: '3%', marginBottom: "40px"
     };
@@ -46,7 +50,7 @@ const RegisterNVL = () => {
                                         name="registrationNumber"
                                         id="registrationNumber"
                                         value={formData.registrationNumber}
-                                        onChange={handleChange}
+                                        onChange={handleId}
                                         required
                                     />
 
