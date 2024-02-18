@@ -13,13 +13,7 @@ const SideBar = () => {
               <h5 className='card-title'>Profile</h5>
               <ul className="list-group">
                 <li className='list-group-item'>
-                  <Link to="/dashboard/personalInfo">Personal Details </Link>
-                </li>
-                <li className='list-group-item'>
-                  <Link to="/dashboard/correspondenceAddress">Add Corresponding Address </Link>
-                </li>
-                <li className='list-group-item'>
-                  <Link to="/dashboard/permanentAddress">Add Permanent Address </Link>
+                  <Link to="/admin_dash/personalInfo">Personal Details </Link>
                 </li>
               </ul>
             </div>
@@ -27,7 +21,7 @@ const SideBar = () => {
               <h5 className="card-title">Licence</h5>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <Link to="/dashboard/license">Licence</Link>
+                  <Link to="/admin_dash/list">Licence</Link>
                 </li>
               </ul>
             </div>
@@ -35,7 +29,7 @@ const SideBar = () => {
               <h5 className="card-title">Vehical Registration</h5>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <Link to="/dashboard/registerVL">Vehical Registered</Link>
+                  <Link to="/admin_dash/vehicle_list">Vehical Registered</Link>
                 </li>
               </ul>
             </div>

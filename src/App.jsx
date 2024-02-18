@@ -31,7 +31,9 @@ import PermantAd from './assets/components/PersonalD/PermAdd';
 import License from './assets/components/License/licenceDash';
 import Learning_license from './assets/components/License/LearningLicense';
 import Permanent_license from './assets/components/License/PermanentLicense';
+
 import AdminDashboard from './assets/components/DashAdmin/AdminDashboard';
+import PersonalAdminInfo from './assets/components/AdminPer/PersonalDetails';
 
 
 function App() {
@@ -60,6 +62,7 @@ function App() {
           <Route path='/dashboard/license/permanent'  element={<Permanent_license />} />
 
           <Route path="/admin_dash" element={<AdminDashboard/>} />
+          <Route path="/admin_dash/personalInfo" element={<PersonalAdminInfo/>} />
         </Routes>
       </BrowserRouter>
     </>
