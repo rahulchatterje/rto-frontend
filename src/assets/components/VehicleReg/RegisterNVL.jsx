@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Footer from '../Home/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegiNavBar from './RegistervlNav';
+import axios from 'axios';
+import { getVehicledetails } from '../axiosMA';
 
 
 const RegisterNVL = () => {
@@ -18,15 +20,16 @@ const RegisterNVL = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const handleId= (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+    const handleId= async(e) => {
+        const response=await getVehicledetails(formData);
+        setFormData.vehicleType= response.formData.vehicleType;
     }
 
     const myStyles = {
         marginTop: "40px", marginLeft: '3%', marginBottom: "40px"
     };
-    const handleSubmit =(e)=>{
-
+    const handleSubmit =async(e)=> {
+               
     }
 
     return (

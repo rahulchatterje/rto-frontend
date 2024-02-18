@@ -60,7 +60,7 @@ export async function getVehicledetails(vehicleDetails) {
     //   ...vehicleDetails
     // };
 
-    const response = await axios.post(`${SERVER_URL}/vehicalRegistration/vehReg/${sessionStorage.getItem("id")}`, vehicleDetails);
+    const response = await axios.post(`${SERVER_URL}/vehicalRegistration/renewReg/${sessionStorage.getItem("id")}`, vehicleDetails);
     console.log('Vehicle Details Added Successfully : ', response.data);
     return response.data;
   } catch (error) {

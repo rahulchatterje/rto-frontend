@@ -9,23 +9,6 @@ import Modal from 'react-bootstrap/Modal';
 
 import Button from 'react-bootstrap/Button';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const RegisterVL = () => {
 
     const [modalShow, setModalShow] = React.useState(false);
