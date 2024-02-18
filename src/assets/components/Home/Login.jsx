@@ -16,25 +16,37 @@ const Login = () => {
       console.log(response)
 
       if (response && response.data) {
-        const string=response.data.split(",");
-        sessionStorage.setItem("id", string[0]);
-        toast.success(`${string[1] }! Great to have you with us`);
-        setTimeout(() => {
-          navigate('/dashboard', { state: { name: string[1] } });
-        }, 3000);
-      } else {
-        toast.error("Invalid details or something went wrong!");
+        const userData = response.data.split(",");
+        sessionStorage.setItem("id", userData[0]);
+        const role = userData[2];
+
+        if (role == 'APPLICANT') {
+          toast.success(`${userData[1]}! Great to have you with us`);
+          setTimeout(() => {
+            navigate('/dashboard', { state: { name: userData[1] } });
+          }, 3000);
+        } else if (role == 'ADMIN') {
+          toast.success(`Welcome, ${userData[1]}! Admin. You are in.`);
+          setTimeout(() => {
+            navigate('/admin_dash',{ state: { name: userData[1] } });
+          }, 3000);
+        }
+        else {
+          toast.error("Invalid redirection URL!");
+        }
+      }
+
+      else {
+        toast.error("Invalid details!");
       }
     } catch (error) {
-      toast.error("Invalid details or something went wrong!");
+      toast.error("Something went wrong.");
     }
   };
 
-  const myStyles={
-    marginBottom:"40px",marginLeft:"40px",marginRight:"40px",marginTop:"40px"
-  }
+
   return (
-    <div className="row" style={{marginLeft:'10px'}}>
+    <div className="row" style={{ marginLeft: '10px' }}>
       <div className="card col-12 shadow">
         <div className="card-body" style={{ marginBottom: '30px' }}>
           <div className="container-md mt-4">

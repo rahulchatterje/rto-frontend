@@ -1,5 +1,5 @@
 import React from 'react'
-const MainUserInfo = ({ username }) => {
+const MainAdminInfo = ({ username }) => {
 
   return (
     <>
@@ -8,7 +8,7 @@ const MainUserInfo = ({ username }) => {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Welcome, {username}!</h5>
-              <p className="card-text">This is your user dashboard.</p>
+              <p className="card-text">This is your Admin dashboard.</p>
               <img src='/img/dashgirl.jpg' style={{ marginLeft: "185px", height: '0%', width: '53%' }}></img>
             </div>
           </div>
@@ -19,4 +19,4 @@ const MainUserInfo = ({ username }) => {
   )
 }
 
-export default MainUserInfo
+export default MainAdminInfo

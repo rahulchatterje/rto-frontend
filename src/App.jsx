@@ -31,13 +31,11 @@ import PermantAd from './assets/components/PersonalD/PermAdd';
 import License from './assets/components/License/licenceDash';
 import Learning_license from './assets/components/License/LearningLicense';
 import Permanent_license from './assets/components/License/PermanentLicense';
+import AdminDashboard from './assets/components/DashAdmin/AdminDashboard';
+
 
 function App() {
-  // const [color, setColor] = useState('olive')
 
-  // function changeColor(color){
-  //   setColor(color)
-  // }
   return (
     <>
       <BrowserRouter>
@@ -60,11 +58,10 @@ function App() {
           <Route path="/dashboard/license" element={<License />} />
           <Route path='/dashboard/license/learning' element={<Learning_license />} />
           <Route path='/dashboard/license/permanent'  element={<Permanent_license />} />
+
+          <Route path="/admin_dash" element={<AdminDashboard/>} />
         </Routes>
       </BrowserRouter>
-
-
-
     </>
   )
 }

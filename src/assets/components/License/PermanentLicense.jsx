@@ -11,7 +11,7 @@ const Permanent_license = () => {
     const [formData, setFormData] = useState({
         learningLicNo: '',
         resultStatus: '',
-       
+
     })
 
 
@@ -50,15 +50,15 @@ const Permanent_license = () => {
                                 </div>
 
                                 <div className="mb-3">
-                                     <label htmlFor="resultStatus" className="form-label">
-                                          Result Status
-                                     </label>
-                                     <select class="form-select" aria-label="multiple select example" name='resultStatus' value={formData.resultStatus} onChange={handleChange}>
-                                         <option>Select from Below</option>
-                                         <option value="0">PASS</option>
-                                          <option value="1">FAIL</option>
-                                     </select>
-                                 </div>
+                                    <label htmlFor="resultStatus" className="form-label">
+                                        Result Status
+                                    </label>
+                                    <select className="form-select" aria-label="multiple select example" name='resultStatus' value={formData.resultStatus} onChange={handleChange}>
+                                        <option>Select from Below</option>
+                                        <option value="0">PASS</option>
+                                        <option value="1">FAIL</option>
+                                    </select>
+                                </div>
 
                                 <Link to="/dashboard" className="btn btn-primary mt-3" >
                                     Apply
