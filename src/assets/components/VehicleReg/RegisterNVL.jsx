@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../Home/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegiNavBar from './RegistervlNav';
-import axios from 'axios';
-import { getVehicledetails } from '../axiosMA';
+
 
 
 const RegisterNVL = () => {
@@ -20,16 +19,26 @@ const RegisterNVL = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const handleId= async(e) => {
-        const response=await getVehicledetails(formData);
-        setFormData.vehicleType= response.formData.vehicleType;
-    }
 
     const myStyles = {
         marginTop: "40px", marginLeft: '3%', marginBottom: "40px"
     };
-    const handleSubmit =async(e)=> {
-               
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await addNewVehicledetails(formData);
+            console.log("response is ", response);
+            setData(response?.registrationNo)
+            setModalShow(true)
+            console.log(response);
+            // window.alert(JSON.stringify(response.registrationNo), "Please! note ");
+
+            toast.success("Congradulations! Vehicle registered successfully..");
+        }
+        catch (error) {
+            console.error("Error adding vehicle details:", error);
+            toast.error("Unable to register the vehicle...")
+        }
     }
 
     return (
@@ -53,7 +62,7 @@ const RegisterNVL = () => {
                                         name="registrationNumber"
                                         id="registrationNumber"
                                         value={formData.registrationNumber}
-                                        onChange={handleId}
+                                        onChange={handleChange}
                                         required
                                     />
 
