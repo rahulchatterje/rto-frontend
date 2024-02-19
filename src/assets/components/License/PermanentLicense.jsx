@@ -3,6 +3,7 @@ import RegiNavBar from "../VehicleReg/RegistervlNav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom';
 import Footer from "../Home/Footer";
+import { applyForPermanent } from '../axiosMA';
 
 
 
@@ -19,6 +20,19 @@ const Permanent_license = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await applyForPermanent(formData);
+           console.log(response);
+           
+            // toast.success("Congradulations! For having Leaning License.");
+        } catch (error) {
+            console.log('Error in applying for learning license. ', error);
+            // toast.error(error.message);
+        }
+
+    }
 
     const myStyles = {
         marginTop: '40px', marginBottom: '40px', marginLeft: '40px', marginRight: '40px'
@@ -60,7 +74,7 @@ const Permanent_license = () => {
                                     </select>
                                 </div>
 
-                                <Link to="/dashboard" className="btn btn-primary mt-3" >
+                                <Link to="/dashboard" className="btn btn-primary mt-3" onClick={handleSubmit}>
                                     Apply
                                 </Link>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <Link to="/dashboard/license" className="btn btn-primary mt-3">
