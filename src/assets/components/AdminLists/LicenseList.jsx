@@ -1,9 +1,11 @@
 // App.js (React Component)
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { allDetails } from '../axiosMA';
+import AdminNavBar from '../DashAdmin/AdminNavBar';
+import Footer from '../Home/Footer';
 
-function App() {
+const License_list = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -13,57 +15,63 @@ function App() {
 
     const fetchData = async () => {
         try {
-            // Make a GET request to your backend API endpoint
-            const response = await axios.get('http://your-backend-api/data');
-            // Set the fetched data to the state
+
+            const response = await allDetails();
+
             setData(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
+    const mystyle = {
+        marginTop: "20px", marginBotton: "30px", marginLeft: "30px"
+    }
+
     return (
-        <div className="App">
-            <h1>Database Data</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>User_id</th>
-                        <th>License_Holder</th>
-                        <th>License_No</th>
-                        <th>License_Type</th>
-                        <th>Vehicle_Type</th>
-                        <th>Approve</th>
-                        <th>Date_of_Apply</th>
-                        <th>Date_of_Issue</th>
-                        <th>Exam_Status</th>
 
+        <>
+            <AdminNavBar />
+            <h3 style={mystyle}>Registered License</h3><hr />
+            <div className="container">
 
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Render the data in your table */}
-                    {data.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.user_id}</td>
-                            <td>{item.licese_holder}</td>
-                            <td>{item.license_no}</td>
-                            <td>{item.license_type}</td>
-                            <td>{item.vehicle_type}</td>
-                            <td>{item.approve}</td>
-                            <td>{item.date_of_apply}</td>
-                            <td>{item.date_of_issue}</td>
-                            <td>{item.exam_status}</td>
-
+                <table className='table table-bordered'>
+                    <thead className='table-dark'>
+                        <tr>
+                            <th>ID</th>
+                            <th>User_id</th>
+                            <th>License_Holder</th>
+                            <th>License_No</th>
+                            <th>License_Type</th>
+                            <th>Vehicle_Type</th>
+                            <th>Approve</th>
+                            <th>Date_of_Apply</th>
+                            <th>Date_of_Issue</th>
+                            <th>Exam_Status</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div >
+                    </thead>
+                    <tbody>
+
+                        {data.map((item) => (
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                <td>{item.userid}</td>
+                                <td>{item.licenseHolder}</td>
+                                <td>{item.licenseNo}</td>
+                                <td>{item.licenseType}</td>
+                                <td>{item.vehicleType}</td>
+                                <td>{item.approve}</td>
+                                <td>{item.dateOfIssue}</td>
+                                <td>{item.dateOfIssue}</td>
+                                <td>{item.examstatus}</td>
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div >
+            <Footer />
+        </>
     );
 }
 

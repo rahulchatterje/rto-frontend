@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import RegiNavBar from "../VehicleReg/RegistervlNav";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../Home/Footer";
+import { applyForLearning } from '../axiosMA';
+import Modal from 'react-bootstrap/Modal';
 
-
+import { Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 const Learning_license = () => {
+
+    const [modalShow, setModalShow] = React.useState(false);
+    const [data, setData] = useState("");
 
     const [formData, setFormData] = useState({
         age: '',
@@ -17,9 +23,25 @@ const Learning_license = () => {
         birthMark: '',
     })
 
+    const navigate=useNavigate()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await applyForLearning(formData);
+           console.log(response);
+            setData(response?.learningLicenseNo)
+            setModalShow(true)
+            toast.success("Congradulations! For having Leaning License.");
+        } catch (error) {
+            console.log('Error in applying for learning license. ', error);
+            toast.error(error.message);
+        }
+
     }
 
 
@@ -111,7 +133,7 @@ const Learning_license = () => {
                                     />
                                 </div>
 
-                                <Link to="/dashboard/license" className="btn btn-primary mt-3" >
+                                <Link  className="btn btn-primary mt-3" onClick={handleSubmit}>
                                     Register
                                 </Link>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <Link to="/dashboard/license" className="btn btn-primary mt-3">
@@ -127,8 +149,43 @@ const Learning_license = () => {
 
             </div>
             <Footer />
+
+            <MyVerticallyCenteredModal
+        data={data}
+        show={modalShow}
+        onHide={() => {
+            setModalShow(false);
+            navigate("/dashboard/lic")
+        }}
+      />
         </>
     )
 }
 
 export default Learning_license;
+
+function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Registration Number
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <h5> Please note this number for furthur use. </h5>
+          <h3>
+            {props.data} 
+          </h3>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Understood</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
