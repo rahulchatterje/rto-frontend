@@ -1,11 +1,13 @@
 // App.js (React Component)
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Permanent_license from './../License/PermanentLicense';
+import { allDetails, approveLicense } from '../axiosMA';
+import AdminNavBar from '../DashAdmin/AdminNavBar';
+import Footer from '../Home/Footer';
 
-function App() {
+const Approve_List = () => {
     const [data, setData] = useState([]);
+    const [approved,setApproved]=useState([]);
 
     useEffect(() => {
         // Fetch data from your backend API when the component mounts
@@ -14,45 +16,73 @@ function App() {
 
     const fetchData = async () => {
         try {
-            // Make a GET request to your backend API endpoint
-            const response = await axios.get('http://your-backend-api/data');
-            // Set the fetched data to the state
+            const response = await allDetails();
             setData(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
+    const handleApprove = async (id) => {
+        const response = await approveLicense(id);
+        console.log(response)
+    }
+
+    const handleReject = async (licId) => {
+        const response = await rejectLicense();
+        console.log(response)
+    }
+
+    const mystyle = {
+        marginTop: "20px", marginBotton: "30px", marginLeft: "30px"
+    }
+
     return (
-        <div className="App">
-            <h1>Database Data</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>User_ID</th>
-                        <th>Learning_License_No</th>
-                        <th>Learning_License_ID</th>
-                        <th>Date_of_Application</th>
-                        <th>Result</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Render the data in your table */}
-                    {data.map((item) => (
-                        <tr key={item.id}>
-                            <td>{item.id}</td>
-                            <td>{item.user_id}</td>
-                            <td>{item.learning_lic_no}</td>
-                            <td>{item.learning_license_register_id}</td>
-                            <td>{item.result_status}</td>
+        <>
+            <AdminNavBar />
+            <h3 style={mystyle}>Registered License</h3><hr />
+            <div className="container">
+                <table className='table table-bordered'>
+                    <thead className='table-dark'>
+                        <tr>
+                            <th>ID</th>
+                            {/* <th>User_id</th> */}
+                            <th>License_Holder</th>
+                            <th>License_No</th>
+                            <th>License_Type</th>
+                            <th>Vehicle_Type</th>
+                            <th colSpan={2}>Approve
+                            </th>
+                            <th>Exam_Status</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div >
+                    </thead>
+                    <tbody>
+                        {data.map((item) => (
+                            <tr key={item.id}>
+                                <td>{item.id}</td>
+                                {/* <td>{item.userid}</td> */}
+                                <td>{item.licenseHolder}</td>
+                                <td>{item.licenseNo}</td>
+                                <td>{item.licenseType}</td>
+                                <td>{item.vehicleType}</td>
+                                { 
+                                    !item.licenseNo  ? 
+                                    <td colSpan={2}>{item.approve}&nbsp;&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-success" onClick={()=>{
+                                        handleApprove(item.id)
+                                    }}>Approve</button>&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-danger" onClick={()=>{handleReject(item.id)}}>Reject</button>
+                                </td>:<td colSpan={2}>{item.approve}</td>
+                                }
+                                <td>{item.examstatus}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div >
+            <Footer />
+        </>
     );
 }
 
-export default Permanent_Approve;
+export default Approve_List;

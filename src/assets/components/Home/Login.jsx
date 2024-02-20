@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Toast, toast } from '../toast';
 import { login } from './../axiosMA';
+import BikeAnimation from '../BikeAnimation';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -46,7 +47,9 @@ const Login = () => {
 
 
   return (
-    <div className="row" style={{ marginLeft: '10px' }}>
+    <>
+     <BikeAnimation/>
+    <div className="row" style={{ marginLeft: '10px', marginTop:'30px' }}>
       <div className="card col-12 shadow">
         <div className="card-body" style={{ marginBottom: '30px' }}>
           <div className="container-md mt-4">
@@ -84,8 +87,12 @@ const Login = () => {
             </form>
           </div>
         </div>
+     
       </div>
     </div>
+
+
+    </>
   );
 };
 

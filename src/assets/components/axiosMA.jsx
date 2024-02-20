@@ -51,6 +51,30 @@ export async function addUserDetails(userDetails) {
   }
 };
 
+export async function getUserDetails() {
+  try {
+    const response = await axios.get(`${SERVER_URL}/users/home/personalDetails/${sessionStorage.getItem("id")}`);
+    console.log(response);
+    return response;
+  }
+  catch (error) {
+    console.log("Error in showing personal", error);
+    throw error;
+  }
+}
+
+export async function getAdminDetails() {
+  try {
+    const response = await axios.get(`${SERVER_URL}/admin/dashboard/personalDetails/${sessionStorage.getItem("id")}`)
+    console.log(response.data)
+    return response;
+  }
+  catch (error) {
+    console.log("Error in showing personal", error);
+    throw error;
+  }
+}
+
 export async function applyForLearning(licenseDetails) {
   try {
     const response = await axios.post(`${SERVER_URL}/License/learning/${sessionStorage.getItem("id")}`, licenseDetails);
@@ -75,15 +99,20 @@ export async function applyForPermanent(licenseDetails) {
   }
 }
 
-
+export async function approveLicense(licId) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/admin/license/approve/${licId}`);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(response);
+    throw error;
+  }
+}
 
 export async function applyForExam(licenseNo) {
   try {
-    console.log(licenseNo.learningLicNo);
-    
-
     const response = await axios.get(`${SERVER_URL}/exam/${sessionStorage.getItem("id")}`);
-
     console.log(response);
     return response;
   } catch (error) {
@@ -93,13 +122,13 @@ export async function applyForExam(licenseNo) {
 }
 
 
-export async function getExamQue(){
-  try{
-    const response=await axios.get(`${SERVER_URL}/exam/test`);
+export async function getExamQue() {
+  try {
+    const response = await axios.get(`${SERVER_URL}/exam/test`);
     console.log(response);
     return response;
   }
-  catch(error){
+  catch (error) {
     console.error('Error adding vehicle details:', error);
     throw error;
   }
@@ -123,7 +152,7 @@ export async function addVehicledetails(vehicleDetails) {
 export async function addNewVehicledetails(vehicleDetails) {
 
   try {
-   
+
     const response = await axios.post(`${SERVER_URL}/vehicalRegistration/renewReg/${sessionStorage.getItem("id")}`, vehicleDetails);
     console.log('Vehicle Details Added Successfully : ', response.data);
     return response.data;
@@ -136,9 +165,7 @@ export async function addNewVehicledetails(vehicleDetails) {
 
 
 export async function LicenseRenew(licenseNo) {
-
   try {
-   
     const response = await axios.post(`${SERVER_URL}/License/renewLicense/userId${sessionStorage.getItem("id")}`, licenseNo);
     console.log('Apply for License Renew  Successfully : ', response.data);
     return response.data;

@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { useState } from 'react';
 import RegiNavBar from '../VehicleReg/RegistervlNav';
 import Footer from "../Home/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+import { getAdminDetails } from '../axiosMA';
 
 const personalAdminInfo = () => {
 
@@ -27,10 +28,41 @@ const personalAdminInfo = () => {
         permanentAddressZipCode: ''
     });
 
+    useEffect(() => {
+        fetchData();
+    }, [])
 
+    const fetchData = async () => {
+        const response = await getAdminDetails();
+       
+    
+        setFormData({
+            userName: response.data.userName,
+            s_d_w: response.data.s_d_w,
+            email: response.data.email,
+            birthDate: response.data.birthDate,
+            phoneNo: response.data.phoneNo,
+            gender: response.data.gender,
+            correspondAddStreet: response.data.correspondAddStreet,
+            correspondAddCity: response.data.correspondAddCity,
+            correspondAddState: response.data.correspondAddState,
+            correspondAddCountry: response.data.correspondAddCountry,
+            correspondAddZipCode: response.data.correspondAddZipCode,
+            permanentAddressStreet: response.data.permanentAddressStreet,
+            permanentAddressCity: response.data.permanentAddressCity,
+            permanentAddressState: response.data.permanentAddressState,
+            permanentAddressCountry: response.data.permanentAddressCountry,
+            permanentAddressZipCode: response.data.permanentAddressZipCode
+        })
+    }
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+
     };
 
     const handleSubmit = async (e) => {
@@ -179,7 +211,7 @@ const personalAdminInfo = () => {
 
                     <div className="col-md-4">
                         <label htmlFor="correspondAddZipCode" className="form-label">Zip-Code</label>
-                        <input type="text" className="form-control" name="correspondAddZipCode" />
+                        <input type="text" className="form-control" name="correspondAddZipCode" value={formData.correspondAddZipCode}/>
                     </div>
 
                     <div className="col-md-12">

@@ -38,8 +38,9 @@ import Exam_data from './assets/components/Exam/Exam_Questions';
 
 import AdminDashboard from './assets/components/DashAdmin/AdminDashboard';
 import PersonalAdminInfo from './assets/components/AdminPer/PersonalDetails';
+import Approve_List from './assets/components/AdminLists/ApproveLic';
 import License_list from './assets/components/AdminLists/LicenseList';
-
+import  Vehregister_list from './assets/components/AdminLists/VehicleList';
 
 
 function App() {
@@ -72,8 +73,9 @@ function App() {
 
           <Route path="/admin_dash" element={<AdminDashboard/>} />
           <Route path="/admin_dash/personalInfo" element={<PersonalAdminInfo/>} />
+          <Route path="/admin_dash/approve" element={<Approve_List/>}/>
           <Route path="/admin_dash/list" element={<License_list />} />
-          <Route path=""/>
+          <Route path="/admin_dash/vehicle_list" element={<Vehregister_list/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import RegiNavBar from '../VehicleReg/RegistervlNav';
 import Footer from "../Home/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
+import { getUserDetails } from '../axiosMA';
 
 
 
 const personalInfo = () => {
 
-    const navigate= useNavigate();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         userName: '',
         s_d_w: '',
@@ -19,13 +20,53 @@ const personalInfo = () => {
         gender: '',
     });
 
+    // const [userName, setuserName]=useState('');
+    // const [s_d_w, sets_d_w]=useState('');
+    // const [email, setemail]=useState('');
+    // const [birthDate, setbirthDate]=useState('');
+    // const [phoneNo, setphoneNo]=useState('');
+    // const [gender, setgender]=useState('');
+
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    const fetchData = async () => {
+        try {
+
+            const response = await getUserDetails();
+            setFormData({
+                userName: response.data.userName,
+                s_d_w: response.data.s_d_w,
+                email: response.data.email,
+                birthDate: response.data.birthDate,
+                phoneNo: response.data.phoneNo,
+                gender: response.data.gender,
+            });
+            // setuserName(response.data.userName)
+            // sets_d_w(response.data.s_d_w)
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+
+        // setuserName({ ...userName, [e.target.name]: e.target.value });
+        // sets_d_w({ ...s_d_w, [e.target.name]: e.target.value })
+
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+
         navigate("/dashboard");
     }
 
@@ -99,8 +140,11 @@ const personalInfo = () => {
                     </div>
 
                     <div className="col-md-6">
-                        <label htmlFor="gender" className='form-label' value={formData.gender} onChange={handleChange}>Gender</label>
-                        <select class="form-select" aria-label="multiple select example" name='gender' value={formData.gender} onChange={handleChange}>
+                        <label htmlFor="gender" className='form-label'
+                        >Gender</label>
+                        <select class="form-select" aria-label="multiple select example" name='gender' value={formData.gender}
+                            onChange={handleChange}
+                        >
                             <option>Select from Below</option>
                             <option value="0">Male</option>
                             <option value="1">Female</option>
