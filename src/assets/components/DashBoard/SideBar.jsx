@@ -29,6 +29,10 @@ const SideBar = ({ username }) => {
                 <li className="list-group-item">
                   <Link to="/dashboard/license">Apply For  Licence</Link>
                 </li>
+
+                <li className="list-group-item">
+                  <Link to="/dashboard/LicenseRenew">Apply For Renew Licence</Link>
+                </li>
               </ul>
             </div>
             <div className="card-body">

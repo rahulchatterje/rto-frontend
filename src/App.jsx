@@ -31,6 +31,7 @@ import PermantAd from './assets/components/PersonalD/PermAdd';
 import License from './assets/components/License/licenceDash';
 import Learning_license from './assets/components/License/LearningLicense';
 import BeforeExam from './assets/components/License/BeforeExam';
+import License_Renew from './assets/components/License/LicenseRenew';
 import Permanent_license from './assets/components/License/PermanentLicense';
 
 import Exam_data from './assets/components/Exam/Exam_Questions';
@@ -66,7 +67,7 @@ function App() {
           <Route path='/dashboard/license/learning' element={<Learning_license />} />
           <Route path="/dashboard/lic" element={<BeforeExam />} />
           <Route path='/dashboard/license/permanent' element={<Permanent_license />} />
-
+          <Route path='/dashboard/LicenseRenew' element={<License_Renew/>}/>
           <Route path='/dashboard/test/exam' element={<Exam_data/>}/>
 
           <Route path="/admin_dash" element={<AdminDashboard/>} />
