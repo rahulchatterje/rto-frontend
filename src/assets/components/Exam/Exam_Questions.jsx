@@ -10,14 +10,17 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Exam_data = () => {
     const [data, setData] = useState([]);
+    const [selectedAnswer, setAnswer] = useState([]);
+    var index = 1;
+
 
     useEffect(() => {
         // Fetch data from your backend API when the component mounts
         fetchData();
     }, []);
-    
-    const navigate=useNavigate();
-    
+
+    const navigate = useNavigate();
+
     const fetchData = async () => {
         try {
 
@@ -30,9 +33,25 @@ const Exam_data = () => {
         }
     };
 
+    const handleOptionChange = (questionId, val) => {
+        console.log(val)
+        setAnswer({ ...selectedAnswer, [questionId]: val });
+    };
+
+
     const handleSubmit = () => {
-     
+
+        let score = 0;
+        data.forEach(item => {
+            const selectedOption = selectedAnswer[item.id];
+            if (selectedOption === item.correctAns) {
+                score++;
+            }
+        }
+        );
         // You can submit the selected options to your server here
+        alert(`You scored ${score} out of ${data.length}. ${score >= data.length / 2 ? 'Congratulations! You passed.' : 'Sorry! You failed.'}`);
+
         console.log('Selected Options:', data);
         navigate('/dashboard/license');
     };
@@ -50,22 +69,26 @@ const Exam_data = () => {
                 {data.map((item) => (
                     <div className="question-container" key={item.id}>
                         <div className="mb-3">
-                            <p>{item.id}. {item.questions}</p>
+                            <p>{index++}. {item.questions}</p>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name={item.id} id={`optionA-${item.id}`} value={item.optA} />
+                            <input className="form-check-input" type="radio" name={item.id} id={`optionA-${item.id}`} value={item.optA}
+                                onChange={() => handleOptionChange(item.id, "A")} />
                             <label className="form-check-label" htmlFor={`optionA-${item.id}`}>{item.optA}</label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name={item.id} id={`optionB-${item.id}`} value={item.optB} />
+                            <input className="form-check-input" type="radio" name={item.id} id={`optionB-${item.id}`} value={item.optB}
+                                onChange={() => handleOptionChange(item.id, 'B')} />
                             <label className="form-check-label" htmlFor={`optionB-${item.id}`}>{item.optB}</label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name={item.id} id={`optionC-${item.id}`} value={item.optC} />
+                            <input className="form-check-input" type="radio" name={item.id} id={`optionC-${item.id}`} value={item.optC}
+                                onChange={() => handleOptionChange(item.id, 'C')} />
                             <label className="form-check-label" htmlFor={`optionC-${item.id}`}>{item.optC}</label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name={item.id} id={`optionD-${item.id}`} value={item.optD} />
+                            <input className="form-check-input" type="radio" name={item.id} id={`optionD-${item.id}`} value={item.optD}
+                                onChange={() => handleOptionChange(item.id, 'D')} />
                             <label className="form-check-label" htmlFor={`optionD-${item.id}`}>{item.optD}</label>
                         </div>
                         <hr />

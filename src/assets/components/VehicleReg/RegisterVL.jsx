@@ -12,7 +12,11 @@ import Button from 'react-bootstrap/Button';
 const RegisterVL = () => {
 
     const [modalShow, setModalShow] = React.useState(false);
-    const [data,setData]=useState("");
+    const [data,setData]=useState({
+        registrationNo:'',
+        numberPlate:''
+
+    })
 
     const [formData, setFormData] = useState({
         vehicleType: '',
@@ -32,7 +36,8 @@ const RegisterVL = () => {
         console.log(formData);
         try {
             const response = await addVehicledetails(formData);
-            setData(response?.registrationNo)
+            console.log(response);
+            setData({registrationNo:response.registrationNo, numberPlate:response.numberPlate})
             setModalShow(true)
             console.log(response);
             // window.alert(JSON.stringify(response.registrationNo), "Please! note ");
@@ -161,9 +166,14 @@ function MyVerticallyCenteredModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <h5> Please note this number for furthur use. </h5>
+        <h5> Please note this numbers for furthur use. </h5>
+        <hr />
+     
           <h3>
-            {props.data} 
+          Registration ID : {props.data.registrationNo} 
+          </h3>
+          <h3>
+          Number Plate : {props.data.numberPlate}
           </h3>
         </Modal.Body>
         <Modal.Footer>
