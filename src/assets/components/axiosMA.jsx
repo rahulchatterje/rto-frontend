@@ -133,3 +133,17 @@ export async function addNewVehicledetails(vehicleDetails) {
   }
 
 };
+
+
+export async function LicenseRenew(licenseNo) {
+
+  try {
+   
+    const response = await axios.post(`${SERVER_URL}/License/renewLicense/userId${sessionStorage.getItem("id")}`, licenseNo);
+    console.log('Apply for License Renew  Successfully : ', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error in Apply for renewing Licnese :', error);
+    throw error;
+  }
+};    
