@@ -30,10 +30,10 @@ const permantAd = () => {
         <>
             <RegiNavBar />
 
-            <h4 style={myStyles}>Permanent Address:</h4>    
+            <h4 style={myStyles}>Permanent Address:</h4>
             <div className='container mb-3'>
                 <div className="row g-3">
-                    
+
                     <div className="col-12">
                         <label htmlFor="permanentAddressStreet" className="form-label">Street</label>
                         <input type="text"

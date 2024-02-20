@@ -1,12 +1,37 @@
 import axios from 'axios';
 
+
 const SERVER_URL = 'http://localhost:8080'; // Adjust the server URL as per your setup
+
+export const login = async (em, pass) => {
+  try {
+    const response = await axios.post(`${SERVER_URL}/users/login?em=${em}&pass=${pass}`);
+    return response
+  } catch (error) {
+    console.log('Error in logging', error);
+    throw error;
+  }
+}
+
+export const allDetails = async () => {
+  try {
+    const response = await axios.get(`${SERVER_URL}/admin/licenselist`);
+    console.log(response);
+    return response;
+
+  } catch (error) {
+    console.log("Error in fetching details", error);
+    throw error;
+  }
+
+}
+
+
 
 export async function addUserDetails(userDetails) {
   try {
     const response = await axios.post(`${SERVER_URL}/users/register`, userDetails);
-    console.log('User details added successfully:', response.data);
-    // Handle the response as needed
+    // console.log('User details added successfully:', response.data);
     return response.data;
   } catch (error) {
     console.error('Error adding user details:', error);
@@ -14,11 +39,81 @@ export async function addUserDetails(userDetails) {
   }
 };
 
+export async function applyForLearning(licenseDetails) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/License/learning/${sessionStorage.getItem("id")}`, licenseDetails);
+    console.log(response);
+    return response.data;
+  }
+  catch (error) {
+    console.log("Error in apply for learning", error);
+    throw error;
+  }
+}
+
+export async function applyForPermanent(licenseDetails) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/License/permanent/${sessionStorage.getItem("id")}`, licenseDetails);
+    console.log(response);
+    return response.data;
+  }
+  catch (error) {
+    console.log("Error in apply for Permanent", error);
+    throw error;
+  }
+}
+
+
+
+export async function applyForExam(licenseNo) {
+  try {
+    console.log(licenseNo.learningLicNo);
+    
+
+    const response = await axios.get(`${SERVER_URL}/exam/${sessionStorage.getItem("id")}`);
+
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log("Error in applying for exam ", error);
+    throw error;
+  }
+}
+
+
+export async function getExamQue(){
+  try{
+    const response=await axios.get(`${SERVER_URL}/exam/test`);
+    console.log(response);
+    return response;
+  }
+  catch(error){
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+}
+
+
 export async function addVehicledetails(vehicleDetails) {
 
   try {
-    const response = await axios.post(`${SERVER_URL}/vehicleRegistration/vehReg/`, vehicleDetails);
-    console.log('Vechile Details Added Successfully : ', response.data);
+    const response = await axios.post(`${SERVER_URL}/vehicalRegistration/vehReg/${sessionStorage.getItem("id")}`, vehicleDetails);
+    console.log('Vehicle Details Added Successfully : ', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+
+};
+
+
+export async function addNewVehicledetails(vehicleDetails) {
+
+  try {
+   
+    const response = await axios.post(`${SERVER_URL}/vehicalRegistration/renewReg/${sessionStorage.getItem("id")}`, vehicleDetails);
+    console.log('Vehicle Details Added Successfully : ', response.data);
     return response.data;
   } catch (error) {
     console.error('Error adding vehicle details:', error);

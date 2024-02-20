@@ -29,14 +29,20 @@ import CorresP from './assets/components/PersonalD/CorresAdd';
 import PermantAd from './assets/components/PersonalD/PermAdd';
 
 import License from './assets/components/License/licenceDash';
+import Learning_license from './assets/components/License/LearningLicense';
+import BeforeExam from './assets/components/License/BeforeExam';
+import Permanent_license from './assets/components/License/PermanentLicense';
+
+import Exam_data from './assets/components/Exam/Exam_Questions';
+
+import AdminDashboard from './assets/components/DashAdmin/AdminDashboard';
+import PersonalAdminInfo from './assets/components/AdminPer/PersonalDetails';
+import License_list from './assets/components/AdminLists/LicenseList';
+
 
 
 function App() {
-  // const [color, setColor] = useState('olive')
 
-  // function changeColor(color){
-  //   setColor(color)
-  // }
   return (
     <>
       <BrowserRouter>
@@ -55,10 +61,20 @@ function App() {
           <Route path="/dashboard/correspondenceAddress" element={<CorresP />} />
           <Route path='/dashboard/permanentAddress' element={<PermantAd />} />
           <Route path="/dashboard/myResult" element={<MyResult />} />
+
           <Route path="/dashboard/license" element={<License />} />
+          <Route path='/dashboard/license/learning' element={<Learning_license />} />
+          <Route path="/dashboard/lic" element={<BeforeExam />} />
+          <Route path='/dashboard/license/permanent' element={<Permanent_license />} />
+
+          <Route path='/dashboard/test/exam' element={<Exam_data/>}/>
+
+          <Route path="/admin_dash" element={<AdminDashboard/>} />
+          <Route path="/admin_dash/personalInfo" element={<PersonalAdminInfo/>} />
+          <Route path="/admin_dash/list" element={<License_list />} />
+          <Route path=""/>
         </Routes>
       </BrowserRouter>
-
     </>
   )
 }

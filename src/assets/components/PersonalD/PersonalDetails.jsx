@@ -3,11 +3,13 @@ import { useState } from 'react';
 import RegiNavBar from '../VehicleReg/RegistervlNav';
 import Footer from "../Home/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const personalInfo = () => {
 
+    const navigate= useNavigate();
     const [formData, setFormData] = useState({
         userName: '',
         s_d_w: '',
@@ -24,6 +26,7 @@ const personalInfo = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
+        navigate("/dashboard");
     }
 
     const myStyles = {
