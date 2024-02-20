@@ -1,9 +1,11 @@
 // App.js (React Component)
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { allVehRegister } from '../axiosMA';
+import AdminNavBar from '../DashAdmin/AdminNavBar';
+import Footer from '../Home/Footer';
 
-function App() {
+const Vehregister_list = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,23 +16,36 @@ function App() {
   const fetchData = async () => {
     try {
       // Make a GET request to your backend API endpoint
-      const response = await axios.get('http://your-backend-api/data');
+      const response = await allVehRegister();
       // Set the fetched data to the state
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
+  const mystyle = {
+    marginTop: "20px", marginBotton: "30px", marginLeft: "30px"
+}
 
   return (
-    <div className="App">
-      <h1>Database Data</h1>
-      <table>
-        <thead>
-          <tr>
+    <>
+    <AdminNavBar />
+    <h3 style={mystyle}>Registered Vehicles</h3><hr />
+    <div className="container">
+
+        <table className='table table-bordered'>
+            <thead className='table-dark'>
+                 <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Registration No. </th>
+            <th>Date Of Application</th>
+            <th>Vehicle Type</th>
+            <th>Purchase Date</th>
+            <th>Vehical Company</th>
+            <th>Number Plate</th>
+            <th>Vehical Model</th>
+            <th>Renew Registration No</th>
+
             {/* Add more table headings as needed */}
           </tr>
         </thead>
@@ -39,15 +54,23 @@ function App() {
           {data.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
+              <td>{item.registrationNo}</td>
+              <td>{item.dateOfAppl}</td>
+              <td>{item.vehicleType}</td>
+              <td>{item.purchaseDate}</td>
+              <td>{item.VehicalCompany}</td>
+              <td>{item.numberPlate}</td>
+              <td>{item.VehicalModel}</td>
+              <td>{item.newRegistrationNo}</td>
               {/* Render more table cells as needed */}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+    <Footer />
+        </>
   );
 }
 
-export default App;
+export default Vehregister_list;

@@ -26,6 +26,18 @@ export const allDetails = async () => {
 
 }
 
+export const allVehRegister = async () => {
+  try {
+    const response = await axios.get(`${SERVER_URL}/admin/vehiclereglist`);
+    console.log(response);
+    return response;
+
+  } catch (error) {
+    console.log("Error in fetching details", error);
+    throw error;
+  }
+
+}
 
 
 export async function addUserDetails(userDetails) {
