@@ -50,7 +50,7 @@ const Exam_data = () => {
         }
         );
         // You can submit the selected options to your server here
-        alert(`You scored ${score} out of ${data.length}. ${score >= data.length / 2 ? 'Congratulations! You passed.' : 'Sorry! You failed.'}`);
+        alert(`You scored ${score} out of ${data.length}. ${score >= 4 ? 'Congratulations! You passed.' : 'Sorry! You failed.'}`);
 
         console.log('Selected Options:', data);
         navigate('/dashboard/license');

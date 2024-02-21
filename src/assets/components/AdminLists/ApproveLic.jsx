@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { allDetails, approveLicense } from '../axiosMA';
 import AdminNavBar from '../DashAdmin/AdminNavBar';
 import Footer from '../Home/Footer';
+import { rejectLicense } from '../axiosMA';
 
 const Approve_List = () => {
     const [data, setData] = useState([]);
-    const [approved,setApproved]=useState([]);
+    const [approved, setApproved] = useState('false');
 
     useEffect(() => {
         // Fetch data from your backend API when the component mounts
@@ -17,6 +18,7 @@ const Approve_List = () => {
     const fetchData = async () => {
         try {
             const response = await allDetails();
+            console.log(response);
             setData(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -25,12 +27,13 @@ const Approve_List = () => {
 
     const handleApprove = async (id) => {
         const response = await approveLicense(id);
-        console.log(response)
+       
+        setApproved(...approved, approved(true))
     }
 
-    const handleReject = async (licId) => {
-        const response = await rejectLicense();
-        console.log(response)
+    const handleReject = async (id) => {
+        const response = await rejectLicense(id);
+
     }
 
     const mystyle = {
@@ -65,14 +68,14 @@ const Approve_List = () => {
                                 <td>{item.licenseNo}</td>
                                 <td>{item.licenseType}</td>
                                 <td>{item.vehicleType}</td>
-                                { 
-                                    !item.licenseNo  ? 
-                                    <td colSpan={2}>{item.approve}&nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-success" onClick={()=>{
-                                        handleApprove(item.id)
-                                    }}>Approve</button>&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-danger" onClick={()=>{handleReject(item.id)}}>Reject</button>
-                                </td>:<td colSpan={2}>{item.approve}</td>
+                                {
+                                    !item.approve ?
+                                        <td colSpan={2}>{item.approve}&nbsp;&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-success" onClick={() => {
+                                                handleApprove(item.id)
+                                            }}>Approve</button>&nbsp;&nbsp;
+                                            <button type="button" class="btn btn-danger" onClick={() => { handleReject(item.id) }}>Reject</button>
+                                        </td> : <td colSpan={2}>{item.approve}</td>
                                 }
                                 <td>{item.examstatus}</td>
                             </tr>

@@ -16,7 +16,7 @@ export const login = async (em, pass) => {
 export const allDetails = async () => {
   try {
     const response = await axios.get(`${SERVER_URL}/admin/licenselist`);
-    console.log(response);
+    // console.log(response);
     return response;
 
   } catch (error) {
@@ -102,6 +102,17 @@ export async function applyForPermanent(licenseDetails) {
 export async function approveLicense(licId) {
   try {
     const response = await axios.post(`${SERVER_URL}/admin/license/approve/${licId}`);
+    // console.log(response);
+    return response;
+  } catch (error) {
+    console.log(response);
+    throw error;
+  }
+}
+
+export async function rejectLicense(licId) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/admin/license/reject/${licId}`);
     console.log(response);
     return response;
   } catch (error) {
