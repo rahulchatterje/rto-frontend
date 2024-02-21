@@ -2,6 +2,9 @@ import RegiNavBar from '../VehicleReg/RegistervlNav';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from '../Home/Footer';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import { addCorrespAdd } from '../axiosMA';
+import { Toast, toast } from '../toast';
 
 const corresP = () => {
 
@@ -13,13 +16,29 @@ const corresP = () => {
         correspondAddZipCode: ''
     })
 
+    const navigate = useNavigate()
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(formData);
+        try {
+            const response = await addCorrespAdd(formData);
+            // Call the addCorrespAdd function
+      
+            toast.success("Congratulations! Corresponding Address are saved successfully..");
+            setTimeout(() => { navigate('/dashboard') }, 3000);
+      
+      
+            // Handle the response or perform any other actions upon successful submission
+          } catch (error) {
+            // Handle errors, display error messages, etc.
+            console.error('Error in adding corresponding address:', error);
+            toast.error("Oops! Something went wrong.");
+          }
     }
 
     const myStyles = {
@@ -112,15 +131,18 @@ const corresP = () => {
 
                     <div style={{ display: 'flex', justifyContent: "flex-start" }}>
                         <div className="col-1">
-                            <button type="submit" className="btn btn-primary">Update</button>
+                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Update</button>
                         </div>
 
                         <div className="col-2">
-                            <button type="reset" className="btn btn-primary">Reset</button>
+                        <Link to="/dashboard/correspondenceAddress" className="btn btn-primary mt-3">
+                          Reset
+                         </Link>
                         </div>
                     </div>
                 </div>
             </div>
+            <Toast />
             <Footer />
         </>
 

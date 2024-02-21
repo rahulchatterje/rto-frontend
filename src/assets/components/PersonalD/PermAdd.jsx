@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import RegiNavBar from '../VehicleReg/RegistervlNav';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from '../Home/Footer';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import { addPermanentAdd } from '../axiosMA';
+import { Toast, toast } from '../toast';
+
 
 const permantAd = () => {
 
@@ -13,14 +17,30 @@ const permantAd = () => {
         permanentAddressZipCode: ''
     });
 
+    const navigate = useNavigate()
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(formData);
-
+        try {
+            const response = await addPermanentAdd(formData);
+            // Call the addPermanentAdd function
+            console.log(response);
+           
+            toast.success("Congratulations! Permanent Address are saved successfully..");
+            setTimeout(() => { navigate('/dashboard') }, 3000);
+      
+      
+            // Handle the response or perform any other actions upon successful submission
+          } catch (error) {
+            // Handle errors, display error messages, etc.
+            console.error('Error in adding permanent address:', error);
+            toast.error("Oops! Something went wrong.");
+          }
     }
     const myStyles = {
         marginTop: "40px", marginBottom: "40px", marginRight: "40px", marginLeft: "40px"
@@ -116,15 +136,18 @@ const permantAd = () => {
 
                     <div style={{ display: 'flex', justifyContent: "flex-start" }}>
                         <div className="col-1">
-                            <button type="submit" className="btn btn-primary">Update</button>
+                            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Update</button>
                         </div>
 
                         <div className="col-2">
-                            <button type="reset" className="btn btn-primary">Reset</button>
+                        <Link to="/dashboard/permanentAddress" className="btn btn-primary mt-3">
+                          Reset
+                         </Link>
                         </div>
                     </div>
                 </div>
             </div>
+            <Toast />
             <Footer />
         </>
 
