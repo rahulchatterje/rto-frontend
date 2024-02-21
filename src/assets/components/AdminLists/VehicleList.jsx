@@ -37,6 +37,7 @@ const Vehregister_list = () => {
             <thead className='table-dark'>
                  <tr>
             <th>ID</th>
+            <th>User Id</th>
             <th>Registration No. </th>
             <th>Date Of Application</th>
             <th>Vehicle Type</th>
@@ -54,13 +55,14 @@ const Vehregister_list = () => {
           {data.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
+              <td>{item.userId}</td>
               <td>{item.registrationNo}</td>
               <td>{item.dateOfAppl}</td>
               <td>{item.vehicleType}</td>
               <td>{item.purchaseDate}</td>
-              <td>{item.VehicalCompany}</td>
+              <td>{item.vehicalCompany}</td>
               <td>{item.numberPlate}</td>
-              <td>{item.VehicalModel}</td>
+              <td>{item.vehicalModel}</td>
               <td>{item.newRegistrationNo}</td>
               {/* Render more table cells as needed */}
             </tr>

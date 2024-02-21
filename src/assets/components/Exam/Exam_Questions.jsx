@@ -1,15 +1,20 @@
-import { getExamQue } from "../axiosMA";
+import { getExamQue, setResultStatus } from "../axiosMA";
 import { useState } from "react";
 import { useEffect } from "react";
 import RegiNavBar from "../VehicleReg/RegistervlNav";
 import Footer from "../Home/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, useNavigate } from "react-router-dom";
+import Modal from 'react-bootstrap/Modal';
+import React from 'react';
+import { Button } from "react-bootstrap";
 
 
 
 const Exam_data = () => {
     const [data, setData] = useState([]);
+    // const [Res, setRes] = useState('');
+    const [modalShow, setModalShow] = React.useState(false);
     const [selectedAnswer, setAnswer] = useState([]);
     var index = 1;
 
@@ -24,9 +29,9 @@ const Exam_data = () => {
     const fetchData = async () => {
         try {
 
-            const response = await getExamQue();
-            console.log("response", response);
-            setData(response.data);
+            const details = await getExamQue();
+            // console.log("response", details);
+            setData(details.data);
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -39,21 +44,28 @@ const Exam_data = () => {
     };
 
 
-    const handleSubmit = () => {
+    // var score = 0;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-        let score = 0;
-        data.forEach(item => {
-            const selectedOption = selectedAnswer[item.id];
-            if (selectedOption === item.correctAns) {
-                score++;
+
+    
+        try {
+            let score = 0;
+            for (const item of data) {
+                const selectedOption = selectedAnswer[item.id];
+                if (selectedOption === item.correctAns) {
+                    score++;
+                }
             }
-        }
-        );
-        // You can submit the selected options to your server here
-        alert(`You scored ${score} out of ${data.length}. ${score >= data.length / 2 ? 'Congratulations! You passed.' : 'Sorry! You failed.'}`);
 
-        console.log('Selected Options:', data);
-        navigate('/dashboard/license');
+            const result = score < 4 ? "Fail" : "Pass";
+            await setResultStatus(result);
+
+            navigate('/dashboard/license');
+        } catch (error) {
+            console.error('Error submitting result:', error);
+        }
     };
 
     const mystyle = {
@@ -102,8 +114,40 @@ const Exam_data = () => {
 
             </div >
             <Footer />
+            <MyVerticallyCenteredModal
+
+                show={modalShow}
+                onHide={() => {
+                    setModalShow(false);
+                    navigate("/dashboard/license")
+                }}
+            />
         </>
     );
 }
 
 export default Exam_data;
+
+function MyVerticallyCenteredModal(props) {
+    return (
+        <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Notification
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h5> </h5>
+
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={props.onHide}>Start Exam</Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}

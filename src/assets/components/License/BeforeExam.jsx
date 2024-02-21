@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from "../Home/Footer";
 import { applyForExam } from '../axiosMA';
 import Modal from 'react-bootstrap/Modal';
+import { Toast ,toast } from '../toast';
 
 import { Button } from 'react-bootstrap';
 
@@ -26,12 +27,16 @@ const BeforeExam = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await applyForExam(formData);
-            setModalShow(true)
+           
+            if (formData.learningLicNo) {
+                const response = await applyForExam();
+                setModalShow(true)
+                
+            } else throw new Error();
 
         } catch (error) {
-                console.log("Error while applying for exam");
-                // toast.error("Error while applying for exam");
+          
+             toast.error("Please enter your Learning License Number");
         }
 
     }
@@ -75,12 +80,13 @@ const BeforeExam = () => {
                     </div>
                 </div>
             </div>
+            <Toast/>
             <Footer />
             <MyVerticallyCenteredModal
-               show={modalShow}
+                show={modalShow}
                 onHide={() => {
                     setModalShow(false);
-                    navigate("/dashboard")
+                    navigate("/dashboard/test/exam")
                 }}
             />
         </>
@@ -99,15 +105,15 @@ function MyVerticallyCenteredModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                 Notification
+                    Notification
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h5> All the best! You can start exam </h5>
-               
+
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Understood</Button>
+                <Button onClick={props.onHide}>Start Exam</Button>
             </Modal.Footer>
         </Modal>
     );

@@ -34,7 +34,9 @@ const license = () => {
                         <div className="card-body">
                             <h5 className="card-title"style={{textDecoration:'underline'}}>Apply For Permanent License</h5>
                             <p className="card-text">Hurrey! That's it. This is the last step of the process. Complete it and have license delivered at home.</p>
-                            <Link to="/dashboard/license/permanent" className="btn btn-primary">Permanent License</Link>
+                            <Link to="/dashboard/license/permanent" className="btn btn-primary">Permanent License</Link> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <Link to="/dashboard/license/status" className="btn btn-primary">Check</Link>
+
                         </div>
                     </div>
                 </div>

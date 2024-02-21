@@ -1,4 +1,5 @@
 import axios from 'axios';
+import MyResult from './DashBoard/MyResult';
 
 
 const SERVER_URL = 'http://localhost:8080'; // Adjust the server URL as per your setup
@@ -16,7 +17,7 @@ export const login = async (em, pass) => {
 export const allDetails = async () => {
   try {
     const response = await axios.get(`${SERVER_URL}/admin/licenselist`);
-    console.log(response);
+    // console.log(response);
     return response;
 
   } catch (error) {
@@ -51,6 +52,31 @@ export async function addUserDetails(userDetails) {
   }
 };
 
+
+export async function getUserDetails() {
+  try {
+    const response = await axios.get(`${SERVER_URL}/users/home/personalDetails/${sessionStorage.getItem("id")}`);
+    console.log(response);
+    return response;
+  }
+  catch (error) {
+    console.log("Error in showing personal", error);
+    throw error;
+  }
+}
+
+export async function getAdminDetails() {
+  try {
+    const response = await axios.get(`${SERVER_URL}/admin/dashboard/personalDetails/${sessionStorage.getItem("id")}`)
+    console.log(response.data)
+    return response;
+  }
+  catch (error) {
+    console.log("Error in showing personal", error);
+    throw error;
+  }
+}
+=======
 export async function addPermanentAdd(permanentAdd) {
   try {
     const response = await axios.post(`${SERVER_URL}/address/permanent/${sessionStorage.getItem("id")}`, permanentAdd);
@@ -73,6 +99,7 @@ export async function addCorrespAdd(correspAdd) {
     throw error;
   }
 };
+
 
 export async function applyForLearning(licenseDetails) {
   try {
@@ -98,15 +125,31 @@ export async function applyForPermanent(licenseDetails) {
   }
 }
 
-
-
-export async function applyForExam(licenseNo) {
+export async function approveLicense(licId) {
   try {
-    console.log(licenseNo.learningLicNo);
-    
+    const response = await axios.post(`${SERVER_URL}/admin/license/approve/${licId}`);
+    // console.log(response);
+    return response;
+  } catch (error) {
+    console.log(response);
+    throw error;
+  }
+}
 
+export async function rejectLicense(licId) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/admin/license/reject/${licId}`);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(response);
+    throw error;
+  }
+}
+
+export async function applyForExam() {
+  try {
     const response = await axios.get(`${SERVER_URL}/exam/${sessionStorage.getItem("id")}`);
-
     console.log(response);
     return response;
   } catch (error) {
@@ -116,13 +159,13 @@ export async function applyForExam(licenseNo) {
 }
 
 
-export async function getExamQue(){
-  try{
-    const response=await axios.get(`${SERVER_URL}/exam/test`);
+export async function getExamQue() {
+  try {
+    const response = await axios.get(`${SERVER_URL}/exam/test`);
     console.log(response);
     return response;
   }
-  catch(error){
+  catch (error) {
     console.error('Error adding vehicle details:', error);
     throw error;
   }
@@ -142,11 +185,34 @@ export async function addVehicledetails(vehicleDetails) {
 
 };
 
+export async function setResultStatus(result) {
+  try {
+    console.log(result);
+    const response = await axios.post(`${SERVER_URL}/exam/test/result/${sessionStorage.getItem("id")}/${result}`);
+    console.log(response);
+    return response;
+  }
+  catch (error) {
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+}
+
+export async function getPermanentLicense() {
+  try {
+    const response = await axios.post(`${SERVER_URL}/License/licenseno/${sessionStorage.getItem('id')}`);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+}
 
 export async function addNewVehicledetails(vehicleDetails) {
 
   try {
-   
+
     const response = await axios.post(`${SERVER_URL}/vehicalRegistration/renewReg/${sessionStorage.getItem("id")}`, vehicleDetails);
     console.log('Vehicle Details Added Successfully : ', response.data);
     return response.data;
@@ -159,9 +225,7 @@ export async function addNewVehicledetails(vehicleDetails) {
 
 
 export async function LicenseRenew(licenseNo) {
-
   try {
-   
     const response = await axios.post(`${SERVER_URL}/License/renewLicense/userId${sessionStorage.getItem("id")}`, licenseNo);
     console.log('Apply for License Renew  Successfully : ', response.data);
     return response.data;

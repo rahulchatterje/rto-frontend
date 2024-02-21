@@ -60,7 +60,7 @@ const License_list = () => {
                                 <td>{item.licenseNo}</td>
                                 <td>{item.licenseType}</td>
                                 <td>{item.vehicleType}</td>
-                                <td>{item.approve}</td>
+                                <td >{item.approve}</td>
                                 <td>{item.dateOfIssue}</td>
                                 <td>{item.dateOfIssue}</td>
                                 <td>{item.examstatus}</td>

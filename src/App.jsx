@@ -31,15 +31,17 @@ import PermantAd from './assets/components/PersonalD/PermAdd';
 import License from './assets/components/License/licenceDash';
 import Learning_license from './assets/components/License/LearningLicense';
 import BeforeExam from './assets/components/License/BeforeExam';
-import License_Renew from './assets/components/License/LicenseRenew';
+import License_Renew from './assets/components/License/LicenseRenew'
 import Permanent_license from './assets/components/License/PermanentLicense';
 
 import Exam_data from './assets/components/Exam/Exam_Questions';
 
 import AdminDashboard from './assets/components/DashAdmin/AdminDashboard';
 import PersonalAdminInfo from './assets/components/AdminPer/PersonalDetails';
+import Approve_List from './assets/components/AdminLists/ApproveLic';
 import License_list from './assets/components/AdminLists/LicenseList';
-
+import  Vehregister_list from './assets/components/AdminLists/VehicleList';
+import Status from './assets/components/License/Status';
 
 
 function App() {
@@ -68,12 +70,14 @@ function App() {
           <Route path="/dashboard/lic" element={<BeforeExam />} />
           <Route path='/dashboard/license/permanent' element={<Permanent_license />} />
           <Route path='/dashboard/LicenseRenew' element={<License_Renew/>}/>
+          <Route path='/dashboard/license/status' element={<Status/>}/>
           <Route path='/dashboard/test/exam' element={<Exam_data/>}/>
 
           <Route path="/admin_dash" element={<AdminDashboard/>} />
           <Route path="/admin_dash/personalInfo" element={<PersonalAdminInfo/>} />
+          <Route path="/admin_dash/approve" element={<Approve_List/>}/>
           <Route path="/admin_dash/list" element={<License_list />} />
-          <Route path=""/>
+          <Route path="/admin_dash/vehicle_list" element={<Vehregister_list/>}/>
         </Routes>
       </BrowserRouter>
     </>

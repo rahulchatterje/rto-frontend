@@ -21,6 +21,9 @@ const SideBar = () => {
               <h5 className="card-title">Licence</h5>
               <ul className="list-group">
                 <li className="list-group-item">
+                  <Link to="/admin_dash/approve">Approve_License</Link>
+                </li>
+                <li className="list-group-item">
                   <Link to="/admin_dash/list">Licence</Link>
                 </li>
               </ul>

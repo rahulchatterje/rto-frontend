@@ -1,0 +1,77 @@
+.road {
+    height:100px ; 
+    /* Adjust height as needed */
+    /* background-color: #b3daff; Light blue for road */
+    position: absolute;
+    overflow: hidden;
+    bottom: -500px;
+    left: 0px;
+    right: 0px;
+  }
+
+  
+  .bike {
+   
+    /* background-color: #ff6600; Orange for bike */
+    position: absolute;
+    /* bottom: 15;   */
+    /* left: -80px; Initial position off the road */
+    margin-left: -10;
+    animation: moveBike 9s linear infinite; /* Adjust duration as needed */
+     
+  }
+
+  .truck{
+    position: absolute;
+    margin-top: -45px;
+    /* right: -50px; */
+    animation: moveTruck 17s linear infinite;
+  }
+
+  .car{
+    position: absolute;
+    /* right: -1050px; */
+    animation: moveCar 7s linear infinite;
+  }
+  
+
+  
+  @keyframes moveBike {
+    0% {
+      left: -100px; /* Start position off the road */
+    }
+    
+    /* 50% {
+      left: 50%; /* Start position off the road */
+    /* }  */
+   
+    100% {
+      left: 100%; /* Move the bike across the road */
+    }
+  }
+
+  @keyframes moveCar {
+    0% {
+      left: -40px; /* Start position off the road */
+    }
+    
+    /* 50% {
+      left: 50%; /* Start position off the road */
+    /* } */ 
+   
+    100% {
+      left: 100%; /* Move the bike across the road */
+    }
+  }
+  
+  @keyframes moveTruck {
+    0%{
+      right: -120%;
+    }
+    /* 50%{
+      right: 50%;
+    } */
+    100%{
+      right: 100%;
+    }
+  }
