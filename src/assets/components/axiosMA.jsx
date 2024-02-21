@@ -51,6 +51,29 @@ export async function addUserDetails(userDetails) {
   }
 };
 
+export async function addPermanentAdd(permanentAdd) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/address/permanent/${sessionStorage.getItem("id")}`, permanentAdd);
+    // console.log('Permanent Address details added successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding Permanent Address details:', error);
+    throw error;
+  }
+};
+
+
+export async function addCorrespAdd(correspAdd) {
+  try {
+    const response = await axios.post(`${SERVER_URL}/address/corresponding/${sessionStorage.getItem("id")}`, correspAdd);
+    // console.log('Corresponding Address details added successfully:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding Corresponding Address details:', error);
+    throw error;
+  }
+};
+
 export async function applyForLearning(licenseDetails) {
   try {
     const response = await axios.post(`${SERVER_URL}/License/learning/${sessionStorage.getItem("id")}`, licenseDetails);
