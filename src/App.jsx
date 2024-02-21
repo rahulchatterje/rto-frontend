@@ -70,7 +70,7 @@ function App() {
           <Route path="/dashboard/lic" element={<BeforeExam />} />
           <Route path='/dashboard/license/permanent' element={<Permanent_license />} />
           <Route path='/dashboard/LicenseRenew' element={<License_Renew/>}/>
-          <Route path='/dahsboard/license/status' element={<Status/>}/>
+          <Route path='/dashboard/license/status' element={<Status/>}/>
           <Route path='/dashboard/test/exam' element={<Exam_data/>}/>
 
           <Route path="/admin_dash" element={<AdminDashboard/>} />

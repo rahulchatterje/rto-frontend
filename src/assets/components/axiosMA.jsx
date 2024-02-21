@@ -163,11 +163,22 @@ export async function addVehicledetails(vehicleDetails) {
 export async function setResultStatus(result) {
   try {
     console.log(result);
-    const response = await axios.post(`${SERVER_URL}/exam/test/result/${sessionStorage.getItem("id")}`,result);
+    const response = await axios.post(`${SERVER_URL}/exam/test/result/${sessionStorage.getItem("id")}/${result}`);
     console.log(response);
     return response;
   }
   catch (error) {
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+}
+
+export async function getPermanentLicense() {
+  try {
+    const response = await axios.post(`${SERVER_URL}/License/licenseno/${sessionStorage.getItem('id')}`);
+    console.log(response);
+    return response;
+  } catch (error) {
     console.error('Error adding vehicle details:', error);
     throw error;
   }

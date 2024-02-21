@@ -59,7 +59,7 @@ const Exam_data = () => {
                 }
             }
 
-            const result = score < 4 ? 0 : 1;
+            const result = score < 4 ? "Fail" : "Pass";
             await setResultStatus(result);
 
             navigate('/dashboard/license');

@@ -69,8 +69,8 @@ const Approve_List = () => {
                                 <td>{item.licenseType}</td>
                                 <td>{item.vehicleType}</td>
                                 {
-                                    !item.approve ?
-                                        <td colSpan={2}>{item.approve}&nbsp;&nbsp;&nbsp;
+                                    item.approve=="NO" ?
+                                        <td colSpan={2}>
                                             <button type="button" class="btn btn-success" onClick={() => {
                                                 handleApprove(item.id)
                                             }}>Approve</button>&nbsp;&nbsp;
