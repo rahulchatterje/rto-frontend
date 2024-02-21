@@ -1,4 +1,5 @@
 import axios from 'axios';
+import MyResult from './DashBoard/MyResult';
 
 
 const SERVER_URL = 'http://localhost:8080'; // Adjust the server URL as per your setup
@@ -121,7 +122,7 @@ export async function rejectLicense(licId) {
   }
 }
 
-export async function applyForExam(licenseNo) {
+export async function applyForExam() {
   try {
     const response = await axios.get(`${SERVER_URL}/exam/${sessionStorage.getItem("id")}`);
     console.log(response);
@@ -159,6 +160,18 @@ export async function addVehicledetails(vehicleDetails) {
 
 };
 
+export async function setResultStatus(result) {
+  try {
+    console.log(result);
+    const response = await axios.post(`${SERVER_URL}/exam/test/result/${sessionStorage.getItem("id")}`,result);
+    console.log(response);
+    return response;
+  }
+  catch (error) {
+    console.error('Error adding vehicle details:', error);
+    throw error;
+  }
+}
 
 export async function addNewVehicledetails(vehicleDetails) {
 

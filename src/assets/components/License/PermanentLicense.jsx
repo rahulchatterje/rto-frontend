@@ -3,11 +3,14 @@ import RegiNavBar from "../VehicleReg/RegistervlNav";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from 'react-router-dom';
 import Footer from "../Home/Footer";
+import { Toast, toast } from '../toast';
 import { applyForPermanent } from '../axiosMA';
 
 
 
+
 const Permanent_license = () => {
+
 
     const [formData, setFormData] = useState({
         learningLicNo: '',
@@ -23,16 +26,21 @@ const Permanent_license = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await applyForPermanent(formData);
-           console.log(response);
-           
-            // toast.success("Congradulations! For having Leaning License.");
+            if (formData.learningLicNo) {
+                const response = await applyForPermanent(formData);
+                console.log(response);
+
+            } else throw new Error();
+
+
+            toast.success("Congradulations! For having Leaning License.");
         } catch (error) {
             console.log('Error in applying for learning license. ', error);
             // toast.error(error.message);
         }
 
     }
+
 
     const myStyles = {
         marginTop: '40px', marginBottom: '40px', marginLeft: '40px', marginRight: '40px'
@@ -84,7 +92,7 @@ const Permanent_license = () => {
                         </div>
 
                     </div>
-
+                    <Toast />
                 </div>
 
 

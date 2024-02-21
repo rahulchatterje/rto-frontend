@@ -1,44 +1,35 @@
 import React, { useState } from 'react';
-import RegiNavBar from "../License/LicenseRenew";
-import "bootstrap/dist/css/bootstrap.min.css";
+import RegiNavBar from '../VehicleReg/RegistervlNav';
+import Footer from '../Home/Footer';
+import { LicenseRenew } from '../axiosMA';
 import { Link } from 'react-router-dom';
-import Footer from "../Home/Footer";
-import {LicenseRenew} from "../axiosMA";
-
-
 
 const License_Renew = () => {
 
-    const [formData, setFormData] = useState({
-        learningLicNo: '',
-        
 
-    })
-
+    const [license, setLicense] = React.useState('');
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setLicense({ ...license, [e.target.name]: e.target.value });
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await LicenseRenew(formData);
-           console.log(response);
-           
-            // toast.success("Congradulations! For having Leaning License.");
-        } catch (error) {
-            console.log('Error in applying for renew license. ', error);
-            // toast.error(error.message);
-        }
+            if (formData.learningLicNo) {
+                const response = await LicenseRenew();
+                console.log(response)
 
+            } else throw new Error();
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+
+        }
     }
 
     const myStyles = {
-        marginTop: '40px', marginBottom: '40px', marginLeft: '40px', marginRight: '40px'
+        marginBottom: '30px', marginTop: '30px', marginLeft: '30px', marginRight: '30px'
     }
-
-
     return (
         <>
             <RegiNavBar />
@@ -57,13 +48,13 @@ const License_Renew = () => {
                                         type="text"
                                         className='form-control'
                                         name='learningLicNo'
-                                        value={formData.learningLicNo}
+                                        value={license.learningLicNo}
                                         onChange={handleChange}
                                         required
                                     />
                                 </div>
 
-                                
+
 
                                 <Link to="/dashboard" className="btn btn-primary mt-3" onClick={handleSubmit}>
                                     Apply
@@ -81,8 +72,11 @@ const License_Renew = () => {
 
             </div>
             <Footer />
+
         </>
     )
+
 }
 
 export default License_Renew;
+

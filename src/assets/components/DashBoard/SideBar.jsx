@@ -50,7 +50,7 @@ const SideBar = ({ username }) => {
               <h5 className="card-title">Test</h5>
               <ul className="list-group">
                 <li className="list-group-item">
-                  <Link to="/dashboard/test/exam">Apply For Test</Link>
+                  <Link to="/dashboard/lic">Apply For Test</Link>
                 </li>
 
               </ul>
